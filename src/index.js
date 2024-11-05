@@ -7,8 +7,6 @@ import {BrowserRouter} from "react-router-dom"
 import { Provider } from 'react-redux';
 import store from './Redux/Store';
 import { CSSReset, ChakraProvider } from '@chakra-ui/react';
-import { SpeedInsights } from "@vercel/speed-insights/react"
-import { Analytics } from "@vercel/analytics/react"
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -17,8 +15,6 @@ root.render(
   <BrowserRouter>
   <CSSReset/>
     <App />
-    <Analytics />
-    <SpeedInsights />
   </BrowserRouter>
 </ChakraProvider>
   </Provider>
