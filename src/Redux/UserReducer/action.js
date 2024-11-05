@@ -9,13 +9,13 @@ import {
   actionsingUpSuccess,
 } from "./actionType";
 
-let baseURL = "https://launguage-rmdc.vercel.app/";
+let baseURL = process.env.REACT_APP_BASE_URL;
 
 export const loginFetch = (value) => async (dispatch) => {
   dispatch(actionLoginLoading());
   try {
     const res = await axios
-      .post(`${baseURL}users/login`, value);
+      .post(`${baseURL}/users/login`, value);
     dispatch(actionLoginSuccess(res.data));
   } catch (err) {
     dispatch(actionLoginError(err.message));
@@ -24,11 +24,13 @@ export const loginFetch = (value) => async (dispatch) => {
 };
 
 export const signUpFetch = (value) => async (dispatch) => {
+  console.log(value)
   dispatch(actionsignUpLoading());
   return axios
-    .post(`${baseURL}users/register`, value)
+    .post(`${baseURL}/users/register`, value)
     .then((res) => {
       dispatch(actionsingUpSuccess());
+      console.log("user created successfully")
     })
     .catch((err) => {
       dispatch(actionsingUpError(err.response?.data.msg));

@@ -4,12 +4,12 @@ import { ADD_PRODUCT_SUCCESS, ADD_User_SUCCESS, ADD_Video_SUCCESS, GET_PRODUCT_S
 
 
 const token = JSON.parse(localStorage.getItem('user'))?.token || "";
-
+const base_url = process.env.REACT_APP_BASE_URL
 
 
 export const addProduct=(data)=>(dispatch)=>{
   dispatch({type:PRODUCT_REQUEST})
-  fetch("https://launguage-rmdc.vercel.app/courses/add",{
+  fetch(`${base_url}/courses/add`,{
     
     method:"POST",
     headers:{
@@ -24,7 +24,7 @@ export const addProduct=(data)=>(dispatch)=>{
 
 export const addUser=(data)=>(dispatch)=>{
   dispatch({type:PRODUCT_REQUEST})
-  fetch("https://launguage-rmdc.vercel.app/users/register",{
+  fetch(`${base_url}/Users/register`,{
     method:"POST",
     headers:{
       "Content-Type":"application/json",
@@ -38,7 +38,7 @@ export const addUser=(data)=>(dispatch)=>{
 export const addVideo=(data,courseId)=>(dispatch)=>{
   dispatch({type:PRODUCT_REQUEST})
   delete data.courseId
-  fetch("https://launguage-rmdc.vercel.app/videos/add/${courseId}",{
+  fetch(`${base_url}/videos/add/${courseId}`,{
     method:"POST",
     headers:{
       "Content-Type":"application/json",
@@ -53,7 +53,7 @@ export const addVideo=(data,courseId)=>(dispatch)=>{
 
 export const getProduct=(page,limit,search,order)=>(dispatch)=>{
     dispatch({type:PRODUCT_REQUEST})
-    axios.get("https://launguage-rmdc.vercel.app/courses?page=${page}&limit=${limit}&q=${search}&sortBy=price&sortOrder=${order}",{
+    axios.get(`${base_url}/courses?page=${page}&limit=${limit}&q=${search}&sortBy=price&sortOrder=${order}`,{
       headers:{
         Authorization:`Bearer ${token}`
       }
@@ -64,7 +64,7 @@ export const getProduct=(page,limit,search,order)=>(dispatch)=>{
 }
 export const getUser=(page,limit,search,order)=>(dispatch)=>{
     dispatch({type:PRODUCT_REQUEST})
-    axios.get("https://launguage-rmdc.vercel.app/users?page=${page}&limit=${limit}",{
+    axios.get(`${base_url}/users?page=${page}&limit=${limit}`,{
       headers:{
         Authorization:`Bearer ${token}`
       }
@@ -75,7 +75,7 @@ export const getUser=(page,limit,search,order)=>(dispatch)=>{
 
 export const getvideo=(page,limit,user)=>(dispatch)=>{
     dispatch({type:PRODUCT_REQUEST})
-    axios.get("https://launguage-rmdc.vercel.app/videos?page=${page}&limit=${limit}&user=${user}",{
+    axios.get(`${base_url}/videos?page=${page}&limit=${limit}&user=${user}`,{
       headers:{
         Authorization:`Bearer ${token}`
       }
@@ -87,7 +87,7 @@ export const getvideo=(page,limit,user)=>(dispatch)=>{
 
 export const patchProduct=(id,data)=>(dispatch)=>{
   dispatch({type:PRODUCT_REQUEST})
-  fetch("https://launguage-rmdc.vercel.app/courses/update/${id}",{
+  fetch(`${base_url}/courses/update/${id}`,{
     method:"PATCH",
     headers:{
       "Content-Type":"application/json",
@@ -100,7 +100,7 @@ export const patchProduct=(id,data)=>(dispatch)=>{
 }
 export const patchUser=(id,data)=>(dispatch)=>{
   dispatch({type:PRODUCT_REQUEST})
-  fetch("https://launguage-rmdc.vercel.app/users/update/${id}",{
+  fetch(`${base_url}/users/update/${id}`,{
     method:"PATCH",
     headers:{
       "Content-Type":"application/json",
@@ -115,7 +115,7 @@ export const patchUser=(id,data)=>(dispatch)=>{
 
 export const deleteProduct=(id)=>(dispatch)=>{
     dispatch({type:PRODUCT_REQUEST});
-    axios.delete("https://launguage-rmdc.vercel.app/courses/delete/${id}",{
+    axios.delete(`${base_url}/courses/delete/${id}`,{
       headers:{
         Authorization:`Bearer ${token}`
       }
@@ -124,7 +124,7 @@ export const deleteProduct=(id)=>(dispatch)=>{
 }
 export const deleteUsers=(id)=>(dispatch)=>{
     dispatch({type:PRODUCT_REQUEST});
-    axios.delete("https://launguage-rmdc.vercel.app/users/delete/${id}",{
+    axios.delete(`${base_url}/users/delete/${id}`,{
       headers:{
         Authorization:`Bearer ${token}`
       }

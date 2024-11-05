@@ -141,14 +141,12 @@ const SignUp = () => {
       );
       return;
     }
-    
-    navigate('/login')
      dispatch(signUpFetch(form)).then(async (res) => {
+      console.log(form)
       if(!await userStore?.isError){
         setForm({ email: "", password: "", confirmPassword: "", name: "" });
         showToast({toast,message:'SignUp Successful',color:'green'});
         navigate('/login')
-        console.log('hello')
       }else{
         showToast({toast,message:userStore?.isError,color:'red'});
       }      
